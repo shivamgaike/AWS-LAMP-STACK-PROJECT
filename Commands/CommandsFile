@@ -1,0 +1,125 @@
+🚀 LAMP Stack Deployment Commands (Amazon Linux 2023 + Amazon RDS MariaDB)
+
+➡️ sudo -s
+Switch to the root user.
+
+➡️ sudo dnf install -y mariadb1011-server
+Install the MariaDB 10.11 server package.
+
+➡️ sudo dnf install -y mariadb1011
+Install the MariaDB 10.11 client package.
+
+➡️ sudo systemctl enable mariadb
+Enable the MariaDB service at system startup.
+
+➡️ sudo systemctl start mariadb
+Start the MariaDB service.
+
+➡️ mariadb --version
+Verify the installed MariaDB version.
+
+➡️ export MariaDB_Host=marinadbinstance.cf8imwasihtm.ap-south-1.rds.amazonaws.com
+Store the Amazon RDS endpoint in an environment variable.
+
+➡️ mariadb -h marinadbinstance.cf8imwasihtm.ap-south-1.rds.amazonaws.com -P 3306 -u admin -p
+Connect to the Amazon RDS MariaDB instance.
+
+➡️ CREATE DATABASE wordpress;
+Create the WordPress database.
+
+➡️ CREATE USER 'wpuser'@'%' IDENTIFIED BY 'root123456';
+Create a new database user.
+
+➡️ GRANT ALL PRIVILEGES ON wordpress. TO 'wpuser'@'%';*
+Grant all privileges on the WordPress database.
+
+➡️ FLUSH PRIVILEGES;
+Reload the privilege tables.
+
+➡️ SHOW DATABASES;
+Display all available databases.
+
+➡️ USE wordpress;
+Select the WordPress database.
+
+➡️ SHOW TABLES;
+Display all tables in the selected database.
+
+➡️ SHOW GRANTS FOR 'wpuser'@'%';
+Verify the user's permissions.
+
+➡️ EXIT;
+Exit the MariaDB shell.
+
+🌐 Apache HTTP Server Installation
+
+➡️ sudo dnf install -y httpd
+Install the Apache HTTP Server.
+
+➡️ sudo systemctl enable httpd
+Enable Apache at system startup.
+
+➡️ sudo systemctl start httpd
+Start the Apache service.
+
+➡️ sudo systemctl status httpd
+Verify the Apache service status.
+
+🐘 PHP Installation
+
+➡️ sudo dnf install -y php php-cli php-fpm php-mysqlnd php-gd php-mbstring php-xml php-json php-curl php-zip wget tar unzip
+Install PHP, required PHP modules, and utility packages.
+
+➡️ sudo systemctl restart httpd
+Restart Apache after installing PHP.
+
+🌍 WordPress Installation
+
+➡️ cd /home/ec2-user
+Navigate to the EC2 user's home directory.
+
+➡️ wget https://wordpress.org/latest.tar.gz
+Download the latest WordPress package.
+
+➡️ tar -xzf latest.tar.gz
+Extract the downloaded archive.
+
+➡️ ls
+List files and directories.
+
+➡️ cd wordpress
+Navigate to the WordPress directory.
+
+➡️ cp wp-config-sample.php wp-config.php
+Create the WordPress configuration file.
+
+➡️ cat wp-config.php
+View the configuration file.
+
+➡️ vi wp-config.php
+Edit the WordPress configuration file.
+
+📂 Deploy WordPress
+
+➡️ cd /home/ec2-user
+Return to the home directory.
+
+➡️ sudo cp -r wordpress/ /var/www/html/*
+Copy WordPress files to the Apache web root.
+
+➡️ cd /var/www/html/
+Navigate to the Apache web root.
+
+➡️ sudo chown -R apache /var/www/html
+Assign ownership of website files to Apache.
+
+➡️ sudo chmod -R 755 /var/www/html
+Set secure file and directory permissions.
+
+➡️ sudo systemctl restart httpd
+Restart Apache to apply all configuration changes.
+
+✅ Launch WordPress
+
+➡️ http://<EC2-Public-IP>
+Open the EC2 Public IP address in a web browser to complete the WordPress installation.
