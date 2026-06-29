@@ -141,5 +141,5 @@ This project demonstrates the deployment of a scalable and production-oriented L
 
 
 ## Author
-## Atharva Naik
+## Shivam Gaike
 Cloud Engineer | Big Data Engineer | AWS | Linux | Apache | PHP | MariaDB | WordPress | Cloud Computing | Data Engineering
